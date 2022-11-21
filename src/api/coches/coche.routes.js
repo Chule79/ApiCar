@@ -1,8 +1,11 @@
-const UserRoutes = require('express').Router()
+const CocheRoutes = require('express').Router()
 
+const { isAuth } = require("../../middlewares/auth")
 const {getCoches, postCoche} = require ('./coche.controller')
 
-CocheRoutes.post('/newcoche', postCoche)
-CocheRoutes.get('/vercoches', getCoches)
+CocheRoutes.post('/', [isAuth], postCoche)
+CocheRoutes.get('/', [isAuth], getCoches)
+
+
 
 module.exports = CocheRoutes

@@ -3,6 +3,7 @@ const cors = require('cors')
 
 const {connect} = require('./helpers/db/connect')
 const UserRoutes = require('./api/user/user.routes')
+const CocheRoutes = require('./api/coches/coche.routes')
 
 const {setError} = require('./helpers/error/handle.error')
 
@@ -26,6 +27,7 @@ app.use(express.urlencoded({ limit: '1mb', extended: true }))
 app.set('secretKey', process.env.SECRET_KEY)
 
 app.use('/api/users', UserRoutes)
+app.use('/api/coches', CocheRoutes)
 
 app.use('*', (req, res, next) => next(setError(404, 'Route not found')))
 
